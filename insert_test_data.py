@@ -55,6 +55,15 @@ data = [
     'username': 'OpenBuddyBot',
     'active': 1,
   },
+  {
+    'uid': 6,
+    'name': 'Мардж',
+    'surname': 'Симпсон',
+    'position': 'Домохозяйка',
+    'phone': '111-111-7',
+    'username': 'OpenBuddyBot',
+    'active': 1,
+  },
 ]
 
 if __name__ == '__main__':
