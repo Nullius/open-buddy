@@ -35,6 +35,7 @@ async def test_handler(message: types.Message):
 
 class Buddy(StatesGroup):
   name = State()
+  surname = State()
   position = State()
   phone = State()
 
@@ -42,7 +43,7 @@ class Buddy(StatesGroup):
 @dp.message_handler(commands='new_buddy')
 async def name_start(message: types.Message):
   await Buddy.name.set()
-  await message.answer("Ваше имя и фамилия:", reply_markup=types.ReplyKeyboardRemove())
+  await message.answer("Ваше имя:", reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state='*', commands='cancel')
 async def cancel_handler(message: types.Message, state: FSMContext):
@@ -57,6 +58,14 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 async def process_name(message: types.Message, state: FSMContext):
   async with state.proxy() as data:
     data['name'] = message.text
+
+  await Buddy.next()
+  await message.reply("Ваша фамилия:")
+
+@dp.message_handler(state=Buddy.surname)
+async def process_surname(message: types.Message, state: FSMContext):
+  async with state.proxy() as data:
+    data['surname'] = message.text
 
   await Buddy.next()
   await message.reply("Ваша должность:")
