@@ -53,7 +53,7 @@ def new_user(data):
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
-      VALUES (:uid, :name, :surname, :position, :phone, :active, :username)
+      VALUES (:uid, :name, :surname, :position, :phone, :username, :active)
       ''', data)
     conn.commit()
   except Error as e:
