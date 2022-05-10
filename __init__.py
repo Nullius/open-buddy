@@ -81,7 +81,8 @@ async def process_phone(message: types.Message, state=FSMContext):
   async with state.proxy() as data:
     data['phone'] = message.text
     data['uid'] = message.chat.id
-    new_user(*data)
+    data['active'] = True
+    new_user(data)
     await bot.send_message(
       message.chat.id,
       'Finished!'

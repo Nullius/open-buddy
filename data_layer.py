@@ -44,14 +44,14 @@ def create_buddies():
     cur.close()
     conn.close()
 
-def new_user(uid: int, name: str, surname: str, position: str, phone: str):
-  print(uid, name, surname, position, phone)
+def new_user(data):
+  print(data)
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
-      VALUES (?, ?, ?, ?, ?, ?)
-      ''', (uid, name, surname, position, phone, True))
+      VALUES (:uid, :name, :surname, :position, :phone, :active)
+      ''', data)
   except Error as e:
     print(e)
   finally:
