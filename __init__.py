@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO)
 async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(["Test"])
-    await message.answer("Push me")
+    await message.answer("Push me", reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text == "Test")
 async def test_handler(message: types.Message):
