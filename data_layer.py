@@ -23,6 +23,7 @@ def create_users():
       phone TEXT,
       active BOOLEAN)
       ''')
+    conn.commit()
   except Error as e:
     print(e)
   finally:
@@ -38,6 +39,7 @@ def create_buddies():
       uid2 INTEGER,
       date TEXT)
     ''')
+    conn.commit()
   except Error as e:
     print(e)
   finally:
@@ -52,6 +54,7 @@ def new_user(data):
     cur.execute('''INSERT INTO users
       VALUES (:uid, :name, :surname, :position, :phone, :active)
       ''', data)
+    conn.commit()
   except Error as e:
     print(e)
   finally:
