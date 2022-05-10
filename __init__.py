@@ -5,6 +5,8 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
 
+import new_buddy
+
 load_dotenv()
 bot_token = os.getenv("BUDDY_TOKEN")
 if not bot_token:
@@ -18,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 @dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["Test", "Test2"]
+    buttons = ["Test", "new_buddy"]
     keyboard.add(*buttons)
     await message.answer("Push me", reply_markup=keyboard)
 
