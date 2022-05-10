@@ -24,3 +24,6 @@ async def cmd_start(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Test")
 async def test_handler(message: types.Message):
     await message.reply("Pushed")
+
+if __name__ == '__main__':
+    executor.start_polling(dp, skip_updates=True)
