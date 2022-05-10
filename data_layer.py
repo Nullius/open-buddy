@@ -52,7 +52,7 @@ def new_user(data):
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
-      VALUES (:uid, :name, :surname, :position, :phone, :active)
+      VALUES (:uid, :name, :surname, :position, :phone, :active, :username)
       ''', data)
     conn.commit()
   except Error as e:
@@ -66,7 +66,7 @@ def get_users():
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
-    cur.execute('''SELECT uid, name, surname FROM users WHERE active = 1''')
+    cur.execute('''SELECT uid, name, surname, username, phone FROM users WHERE active = 1''')
     result = cur.fetchall()
   except Error as e:
     print(e)

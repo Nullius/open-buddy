@@ -27,7 +27,6 @@ async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = ["Test", "/new_buddy"]
     keyboard.add(*buttons)
-    print(message.from_user.username) # FIXME
     await message.answer("Push me", reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text == "Test")
@@ -83,6 +82,7 @@ async def process_phone(message: types.Message, state=FSMContext):
     data['phone'] = message.text
     data['uid'] = message.chat.id
     data['active'] = True
+    data['username'] = message.chat.username
     new_user(dict(data))
     await bot.send_message(
       message.chat.id,
