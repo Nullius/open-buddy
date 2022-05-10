@@ -45,6 +45,7 @@ def create_buddies():
     conn.close()
 
 def new_user(uid: int, name: str, surname: str, position: str, phone: str):
+  print(uid, name, surname, position, phone)
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
