@@ -57,3 +57,17 @@ def new_user(data):
   finally:
     cur.close()
     conn.close()
+
+def get_users():
+  result = None
+  try:
+    conn = sqlite3.connect(db_name)
+    cur = conn.cursor()
+    cur.execute('''SELECT uid, name, surname FROM users WHERE active = 1''')
+    result = cur.fetchall()
+  except Error as e:
+    print(e)
+  finally:
+    cur.close()
+    conn.close()
+    return result
