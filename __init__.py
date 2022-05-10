@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.INFO)
 @dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["Test", "new_buddy"]
+    buttons = ["Test", "/new_buddy"]
     keyboard.add(*buttons)
     await message.answer("Push me", reply_markup=keyboard)
 
