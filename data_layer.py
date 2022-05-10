@@ -15,7 +15,7 @@ def create_users():
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
-    cur.execute('''CREATE TABLE users (
+    cur.execute('''CREATE TABLE if NOT EXISTS users (
       uid INTEGER PRIMARY KEY,
       name TEXT,
       surname TEXT,
@@ -33,7 +33,7 @@ def create_buddies():
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
-    cur.execute('''CREATE TABLE buddies (
+    cur.execute('''CREATE TABLE if NOT EXISTS buddies (
       uid1 INTEGER,
       uid2 INTEGER,
       date TEXT)

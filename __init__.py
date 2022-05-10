@@ -9,7 +9,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from dotenv import load_dotenv
 
-from data_layer import new_user
+from data_layer import new_user, create_buddies, create_users
 
 load_dotenv()
 bot_token = os.getenv("BUDDY_TOKEN")
@@ -89,4 +89,6 @@ async def process_phone(message: types.Message, state=FSMContext):
     await state.finish()
 
 if __name__ == '__main__':
+    create_users()
+    create_buddies()
     executor.start_polling(dp, skip_updates=True)
