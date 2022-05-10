@@ -5,6 +5,7 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from dotenv import load_dotenv
 
@@ -15,7 +16,8 @@ if not bot_token:
 
 
 bot = Bot(token=bot_token)
-dp = Dispatcher(bot)
+storage = MemoryStorage()
+dp = Dispatcher(bot, storage=storage)
 logging.basicConfig(level=logging.INFO)
 
 @dp.message_handler(commands="start")
@@ -34,6 +36,7 @@ class Buddy(StatesGroup):
   position = State()
   phone = State()
 
+# Registration entry point
 @dp.message_handler(commands='new_buddy')
 async def name_start(message: types.Message):
   await Buddy.name.set()
