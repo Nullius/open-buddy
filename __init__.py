@@ -27,6 +27,7 @@ async def cmd_start(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     buttons = ["Test", "/new_buddy"]
     keyboard.add(*buttons)
+    print(message.from_user.username) # FIXME
     await message.answer("Push me", reply_markup=keyboard)
 
 @dp.message_handler(lambda message: message.text == "Test")
