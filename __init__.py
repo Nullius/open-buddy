@@ -9,6 +9,8 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from dotenv import load_dotenv
 
+from data_layer import new_user
+
 load_dotenv()
 bot_token = os.getenv("BUDDY_TOKEN")
 if not bot_token:
@@ -70,6 +72,7 @@ async def process_phone(message: types.Message, state=FSMContext):
   async with state.proxy() as data:
     data['phone'] = message.text
     data['uid'] = message.chat.id
+    new_user(*data)
     await bot.send_message(
       message.chat.id,
       'Finished!'
