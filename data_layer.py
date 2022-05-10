@@ -50,7 +50,7 @@ def new_user(uid: int, name: str, surname: str, position: str, phone: str):
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
       VALUES (?, ?, ?, ?, ?, ?)
-      ''', uid, name, surname, position, phone)
+      ''', (uid, name, surname, position, phone, True))
   except Error as e:
     print(e)
   finally:
