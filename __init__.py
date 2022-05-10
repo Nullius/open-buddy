@@ -40,7 +40,7 @@ class Buddy(StatesGroup):
 @dp.message_handler(commands='new_buddy')
 async def name_start(message: types.Message):
   await Buddy.name.set()
-  await message.answer("Ваше имя и фамилия:")
+  await message.answer("Ваше имя и фамилия:", reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state='*', commands='cancel')
 async def cancel_handler(message: types.Message, state: FSMContext):
