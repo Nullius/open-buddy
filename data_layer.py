@@ -21,6 +21,7 @@ def create_users():
       surname TEXT,
       position TEXT,
       phone TEXT,
+      username TEXT,
       active BOOLEAN)
       ''')
     conn.commit()
