@@ -35,7 +35,7 @@ if __name__ == '__main__':
     user_to_pair = get_user_by_id(to_pair, users)
     user_buddy = get_user_by_id(buddy, users)
 
-    if (user_to_pair['username'] != 'OpenBuddyBot'):
+    if (user_to_pair[3] != 'OpenBuddyBot'):
       asyncio.run(send_message(to_pair, INVITE))
-    if (user_buddy['username'] != 'OpenBuddyBot'):
+    if (user_buddy[3] != 'OpenBuddyBot'):
       asyncio.run(send_message(buddy, INVITE))
