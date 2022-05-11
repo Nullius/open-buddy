@@ -31,5 +31,11 @@ if __name__ == '__main__':
     print(get_user_by_id(to_pair, users), get_user_by_id(buddy, users))
     # TODO send message
     # TODO write to DB
-    asyncio.run(send_message(to_pair, INVITE))
-    asyncio.run(send_message(buddy, INVITE))
+    
+    user_to_pair = get_user_by_id(to_pair, users)
+    user_buddy = get_user_by_id(buddy, users)
+
+    if (user_to_pair['username'] != 'OpenBuddyBot'):
+      asyncio.run(send_message(to_pair, INVITE))
+    if (user_buddy['username'] != 'OpenBuddyBot'):
+      asyncio.run(send_message(buddy, INVITE))
