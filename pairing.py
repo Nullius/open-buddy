@@ -1,3 +1,4 @@
+import asyncio
 import random
 
 from data_layer import get_users
@@ -30,5 +31,5 @@ if __name__ == '__main__':
     print(get_user_by_id(to_pair, users), get_user_by_id(buddy, users))
     # TODO send message
     # TODO write to DB
-    send_message(to_pair, INVITE)
-    send_message(buddy, INVITE)
+    asyncio.run(send_message(to_pair, INVITE))
+    asyncio.run(send_message(buddy, INVITE))
