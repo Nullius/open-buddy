@@ -90,6 +90,12 @@ async def process_phone(message: types.Message, state=FSMContext):
     )
     await state.finish()
 
+async def send_message(uid, message):
+  await bot.send_message(
+    uid,
+    message
+  )
+
 if __name__ == '__main__':
     create_users()
     create_buddies()
