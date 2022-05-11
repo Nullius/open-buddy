@@ -1,4 +1,4 @@
-from data_layer import new_user
+from data_layer import new_user, create_users
 
 data = [
   {
@@ -67,5 +67,6 @@ data = [
 ]
 
 if __name__ == '__main__':
+  create_users()
   for user in data:
     new_user(user)
