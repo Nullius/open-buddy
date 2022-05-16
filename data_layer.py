@@ -16,7 +16,8 @@ def create_users():
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''CREATE TABLE if NOT EXISTS users (
-      uid INTEGER PRIMARY KEY NOT NULL,
+      id INTEGER PRIMARY KEY,
+      uid INTEGER UNIQUE NOT NULL,
       name TEXT NOT NULL,
       surname TEXT NOT NULL,
       position TEXT NOT NULL,
@@ -54,7 +55,8 @@ def new_user(data):
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
-      VALUES (:uid, :name, :surname, :position, :phone, :username, :active, NULL)
+      (uid, name, surname, position, phone, username, active)
+      VALUES (:uid, :name, :surname, :position, :phone, :username, :active)
       ''', data)
     conn.commit()
   except Error as e:
