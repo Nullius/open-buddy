@@ -16,13 +16,14 @@ def create_users():
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''CREATE TABLE if NOT EXISTS users (
-      uid INTEGER PRIMARY KEY,
-      name TEXT,
-      surname TEXT,
-      position TEXT,
-      phone TEXT,
-      username TEXT,
-      active BOOLEAN)
+      uid INTEGER PRIMARY KEY NOT NULL,
+      name TEXT NOT NULL,
+      surname TEXT NOT NULL,
+      position TEXT NOT NULL,
+      phone TEXT NOT NULL,
+      username TEXT NOT NULL,
+      active BOOLEAN NOT NULL,
+      pair_date DATE)
       ''')
     conn.commit()
   except Error as e:
@@ -53,7 +54,7 @@ def new_user(data):
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
-      VALUES (:uid, :name, :surname, :position, :phone, :username, :active)
+      VALUES (:uid, :name, :surname, :position, :phone, :username, :active, NULL)
       ''', data)
     conn.commit()
   except Error as e:
@@ -75,3 +76,16 @@ def get_users():
     cur.close()
     conn.close()
     return result
+
+def write_pair(uid1, uid2):
+  update_date_query = 'UPDATE users SET pair_date = date() WHERE uid = ?'
+  try:
+    conn = sqlite3.connect(db_name)
+    cur = conn.cursor()
+    cur.execute(update_date_query, (uid1))
+    cur.execute(update_date_query, (uid2))
+  except Error as e:
+    print(e)
+  finally:
+    cur.close()
+    conn.close()

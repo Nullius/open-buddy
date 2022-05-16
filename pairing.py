@@ -1,7 +1,7 @@
 import asyncio
 import random
 
-from data_layer import get_users
+from data_layer import get_users, write_pair
 from buddy import send_message
 
 INVITE = 'Invite to meeting message'
@@ -33,7 +33,8 @@ if __name__ == '__main__':
     uids.remove(buddy)
     print(to_pair, buddy)
     print(get_user_by_id(to_pair, users), get_user_by_id(buddy, users))
-    # TODO write to DB
+    # TODO write to pair table
+    write_pair(to_pair, buddy)
     
     user_to_pair = get_user_by_id(to_pair, users)
     user_buddy = get_user_by_id(buddy, users)
