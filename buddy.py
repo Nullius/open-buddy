@@ -40,6 +40,10 @@ async def what_is_this(message: types.Message):
 async def how_this_works(message: types.Message):
   await message.answer(replies.how_this_works)
 
+@dp.message_handler(lambda message: message.text == "Какие результаты?")
+async def what_results(message: types.Message):
+  await message.answer(replies.what_results)
+
 class Buddy(StatesGroup):
   name = State()
   surname = State()
@@ -48,6 +52,7 @@ class Buddy(StatesGroup):
 
 # Registration entry point
 @dp.message_handler(commands='new_buddy')
+@dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def name_start(message: types.Message):
   await Buddy.name.set()
   await message.answer("Ваше имя:", reply_markup=types.ReplyKeyboardRemove())
@@ -58,8 +63,9 @@ async def cancel_handler(message: types.Message, state: FSMContext):
   if current_state is None:
     return
   
-  await state.finish()
-  await message.reply('Отменено', reply_markup=types.ReplyKeyboardRemove())
+  # await state.finish()
+  await Buddy.previous()
+  await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
@@ -67,7 +73,7 @@ async def process_name(message: types.Message, state: FSMContext):
     data['name'] = message.text
 
   await Buddy.next()
-  await message.reply("Ваша фамилия:")
+  await message.answer("Ваша фамилия:")
 
 @dp.message_handler(state=Buddy.surname)
 async def process_surname(message: types.Message, state: FSMContext):
@@ -75,13 +81,13 @@ async def process_surname(message: types.Message, state: FSMContext):
     data['surname'] = message.text
 
   await Buddy.next()
-  await message.reply("Ваша должность:")
+  await message.answer("Ваша должность:")
 
 @dp.message_handler(state=Buddy.position)
 async def process_position(message: types.Message, state=FSMContext):
   await Buddy.next()
   await state.update_data(position=message.text)
-  await message.reply("Ваш телефон:")
+  await message.answer("Ваш телефон:")
 
 @dp.message_handler(state=Buddy.phone)
 async def process_phone(message: types.Message, state=FSMContext):
