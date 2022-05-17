@@ -10,6 +10,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from dotenv import load_dotenv
 
 from data_layer import new_user, create_buddies, create_users
+import replies
 
 load_dotenv()
 bot_token = os.getenv("BUDDY_TOKEN")
@@ -24,14 +25,16 @@ logging.basicConfig(level=logging.INFO)
 
 @dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    buttons = ["Test", "/new_buddy"]
-    keyboard.add(*buttons)
-    await message.answer("Push me", reply_markup=keyboard)
+  keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  buttons = ["Что это?", "Как это работает?", "Какие результаты?", "Давай начнем!"]
+  keyboard.add(*buttons)
+  await message.answer(replies.start, reply_markup=keyboard)
 
-@dp.message_handler(lambda message: message.text == "Test")
-async def test_handler(message: types.Message):
-    await message.reply("Pushed")
+@dp.message_handler(lambda message: message.text == "Что это?")
+async def what_is_this(message: types.Message):
+  # bot.send_photo(chat_id=message.chat.id, photo=open('static/what-is-this.png', 'rb'))
+  message.answer_photo(open('static/what-is-this.png', 'rb'))
+  message.answer("Послушай это :)")
 
 class Buddy(StatesGroup):
   name = State()

@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
   if (len(uids) % 2 == 1):
     lone = uids.pop()
-    # TODO write to DB
+    # TODO write to DB (or maybe not)
 
   while len(uids) > 0:
     print(uids)
