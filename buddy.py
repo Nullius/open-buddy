@@ -33,8 +33,8 @@ async def cmd_start(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Что это?")
 async def what_is_this(message: types.Message):
   # bot.send_photo(chat_id=message.chat.id, photo=open('static/what-is-this.png', 'rb'))
-  message.answer_photo(open('static/what-is-this.png', 'rb'))
-  message.answer("Послушай это :)")
+  await message.answer_photo(open('static/what-is-this.png', 'rb'))
+  await message.answer("Послушай это :)")
 
 class Buddy(StatesGroup):
   name = State()
