@@ -99,7 +99,7 @@ async def process_phone(message: types.Message, state=FSMContext):
     new_user(dict(data))
     await bot.send_message(
       message.chat.id,
-      'Finished!'
+      replies.finish
     )
     await state.finish()
 
