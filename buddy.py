@@ -36,6 +36,10 @@ async def what_is_this(message: types.Message):
   await message.answer_photo(open('static/what-is-this.png', 'rb'))
   await message.answer("Послушай это :)")
 
+@dp.message_handler(lambda message: message.text == "Как это работает?")
+async def how_this_works(message: types.Message):
+  await message.answer(replies.how_this_works)
+
 class Buddy(StatesGroup):
   name = State()
   surname = State()
