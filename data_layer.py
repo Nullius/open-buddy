@@ -76,8 +76,8 @@ def get_users():
       FROM users
       WHERE active = 1
       ORDER BY
-        pair_date DESC,
-        pair_count DESC
+        pair_date ASC,
+        pair_count ASC 
     ''')
     result = cur.fetchall()
   except Error as e:
