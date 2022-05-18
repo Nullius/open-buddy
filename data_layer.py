@@ -88,7 +88,7 @@ def get_users():
     return result
 
 def write_pair(uid1, uid2):
-  update_date_query = 'UPDATE users SET pair_date = date() WHERE uid = ?'
+  update_date_query = 'UPDATE users SET pair_date = date(), pair_count = pair_count + 1 WHERE uid = ?'
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
