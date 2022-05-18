@@ -94,6 +94,7 @@ def write_pair(uid1, uid2):
     cur = conn.cursor()
     cur.execute(update_date_query, (uid1,))
     cur.execute(update_date_query, (uid2,))
+    conn.commit()
   except Error as e:
     print(e)
   finally:
