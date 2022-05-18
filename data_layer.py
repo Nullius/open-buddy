@@ -92,8 +92,8 @@ def write_pair(uid1, uid2):
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
-    cur.execute(update_date_query, (uid1))
-    cur.execute(update_date_query, (uid2))
+    cur.execute(update_date_query, (uid1,))
+    cur.execute(update_date_query, (uid2,))
   except Error as e:
     print(e)
   finally:
