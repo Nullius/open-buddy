@@ -6,7 +6,7 @@ from buddy import send_message
 
 INVITE = 'Invite to meeting message'
 def invite_message(user):
-  uid, name, surname, username, phone = user
+  uid, name, surname, username, phone, email = user
   return 'Твой бадди на две недели {} {} @{} {}. Ему тоже пришло уведомление с твоими контактами'.format(
     name, surname, username, phone
   )
