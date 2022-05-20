@@ -51,9 +51,9 @@ def run_pairing():
     user_buddy = get_user_by_id(buddy, users)
 
     if (user_to_pair[3] != 'OpenBuddyBot'):
-      send_message(to_pair, invite_message(user_buddy))
+      asyncio.run(send_message(to_pair, invite_message(user_buddy)))
     if (user_buddy[3] != 'OpenBuddyBot'):
-      send_message(buddy, invite_message(user_to_pair))
+      asyncio.run(send_message(buddy, invite_message(user_to_pair)))
 
 '''
 @periodic(2)
