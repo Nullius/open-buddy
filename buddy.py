@@ -58,6 +58,7 @@ async def name_start(message: types.Message):
   await Buddy.email.set()
   await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
 
+'''
 @dp.message_handler(state='*', commands='cancel')
 async def cancel_handler(message: types.Message, state: FSMContext):
   current_state = await state.get_state()
@@ -73,6 +74,7 @@ def cancel_button():
   buttons = ["\cancel",]
   keyboard.add(*buttons)
   return keyboard
+'''
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
