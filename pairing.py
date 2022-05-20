@@ -1,4 +1,5 @@
 import asyncio
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
 
 from data_layer import get_users, write_pair
@@ -27,7 +28,6 @@ def periodic(period):
 
   return scheduler
 
-@periodic(60*10)
 def run_pairing():
   users = get_users()
   print(users)
@@ -51,9 +51,9 @@ def run_pairing():
     user_buddy = get_user_by_id(buddy, users)
 
     if (user_to_pair[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(to_pair, invite_message(user_buddy)))
+      send_message(to_pair, invite_message(user_buddy))
     if (user_buddy[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(buddy, invite_message(user_to_pair)))
+      send_message(buddy, invite_message(user_to_pair))
 
 '''
 @periodic(2)
@@ -63,4 +63,6 @@ async def do_something(*args, **kwargs):
 '''
 
 if __name__ == '__main__':
-  asyncio.run(run_pairing())
+  scheduler = AsyncIOScheduler()
+  scheduler.add_job(run_pairing, 'interval', minutes=1)
+  scheduler.start()
