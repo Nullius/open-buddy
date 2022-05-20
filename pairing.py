@@ -17,7 +17,18 @@ def get_user_by_id (uid, users):
     return user[0]
   return None
 
-if __name__ == '__main__':
+def periodic(period):
+  def scheduler(fcn):
+    async def wrapper(*args, **kwargs):
+      while True:
+        asyncio.create_task(fcn(*args, **kwargs))
+        await asyncio.sleep(period)
+    return wrapper
+
+  return scheduler
+
+@periodic(60*10)
+def run_pairing():
   users = get_users()
   print(users)
   uids = [user[0] for user in users]
@@ -43,3 +54,13 @@ if __name__ == '__main__':
       asyncio.run(send_message(to_pair, invite_message(user_buddy)))
     if (user_buddy[3] != 'OpenBuddyBot'):
       asyncio.run(send_message(buddy, invite_message(user_to_pair)))
+
+'''
+@periodic(2)
+async def do_something(*args, **kwargs):
+    await asyncio.sleep(5)  # Do some heavy calculation
+    print(time.time())
+'''
+
+if __name__ == '__main__':
+  asyncio.run(run_pairing())
