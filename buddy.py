@@ -45,6 +45,7 @@ async def what_results(message: types.Message):
   await message.answer(replies.what_results)
 
 class Buddy(StatesGroup):
+  email = State()
   name = State()
   surname = State()
   position = State()
@@ -55,7 +56,7 @@ class Buddy(StatesGroup):
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def name_start(message: types.Message):
   await Buddy.name.set()
-  await message.answer("Ваше имя:", reply_markup=types.ReplyKeyboardRemove())
+  await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state='*', commands='cancel')
 async def cancel_handler(message: types.Message, state: FSMContext):
@@ -66,6 +67,14 @@ async def cancel_handler(message: types.Message, state: FSMContext):
   # await state.finish()
   await Buddy.previous()
   await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
+
+@dp.message_handler(state=Buddy.email)
+async def process_email(message: types.Message, state: FSMContext):
+  async with state.proxy() as data:
+    data['email'] = message.text
+
+  await Buddy.next()
+  await message.answer('Ваше имя:')
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
