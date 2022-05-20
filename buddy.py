@@ -55,7 +55,7 @@ class Buddy(StatesGroup):
 @dp.message_handler(commands='new_buddy')
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def name_start(message: types.Message):
-  await Buddy.name.set()
+  await Buddy.email.set()
   await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state='*', commands='cancel')
@@ -65,8 +65,8 @@ async def cancel_handler(message: types.Message, state: FSMContext):
     return
   
   # await state.finish()
-  await Buddy.previous()
   await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
+  await Buddy.previous()
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
