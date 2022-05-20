@@ -9,6 +9,7 @@ data = [
     'phone': '111-111-1',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
   {
     'uid': 1,
@@ -18,6 +19,7 @@ data = [
     'phone': '111-111-2',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
   {
     'uid': 2,
@@ -27,6 +29,7 @@ data = [
     'phone': '111-111-3',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
   {
     'uid': 3,
@@ -36,6 +39,7 @@ data = [
     'phone': '111-111-4',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
   {
     'uid': 4,
@@ -45,6 +49,7 @@ data = [
     'phone': '111-111-5',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
   {
     'uid': 5,
@@ -54,6 +59,7 @@ data = [
     'phone': '111-111-6',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
   {
     'uid': 6,
@@ -63,6 +69,7 @@ data = [
     'phone': '111-111-7',
     'username': 'OpenBuddyBot',
     'active': 1,
+    'email': '',
   },
 ]
 

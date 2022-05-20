@@ -25,7 +25,8 @@ def create_users():
       username TEXT NOT NULL,
       active BOOLEAN NOT NULL,
       pair_count INTEGER NOT NULL,
-      pair_date DATE
+      pair_date DATE,
+      email TEXT NOT NULL
     )
     ''')
     conn.commit()
@@ -57,8 +58,8 @@ def new_user(data):
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute('''INSERT INTO users
-      (uid, name, surname, position, phone, username, active, pair_count)
-      VALUES (:uid, :name, :surname, :position, :phone, :username, :active, 0)
+      (uid, name, surname, position, phone, username, active, pair_count, email)
+      VALUES (:uid, :name, :surname, :position, :phone, :username, :active, 0, :email)
       ''', data)
     conn.commit()
   except Error as e:
@@ -72,7 +73,7 @@ def get_users():
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
-    cur.execute('''SELECT uid, name, surname, username, phone
+    cur.execute('''SELECT uid, name, surname, username, phone, email
       FROM users
       WHERE active = 1
       ORDER BY
