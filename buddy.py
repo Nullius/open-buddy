@@ -68,13 +68,19 @@ async def cancel_handler(message: types.Message, state: FSMContext):
   await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
   await Buddy.previous()
 
+def cancel_button():
+  keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  buttons = ["\cancel",]
+  keyboard.add(*buttons)
+  return keyboard
+
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
   async with state.proxy() as data:
     data['email'] = message.text
 
   await Buddy.next()
-  await message.answer('Ваше имя:')
+  await message.answer('Ваше имя:', reply_markup=cancel_button())
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
