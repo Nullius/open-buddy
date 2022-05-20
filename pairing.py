@@ -66,3 +66,8 @@ if __name__ == '__main__':
   scheduler = AsyncIOScheduler()
   scheduler.add_job(run_pairing, 'interval', minutes=1)
   scheduler.start()
+
+  try:
+    asyncio.get_event_loop().run_forever()
+  except (KeyboardInterrupt, SystemExit):
+    pass 
