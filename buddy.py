@@ -83,7 +83,7 @@ async def process_email(message: types.Message, state: FSMContext):
     data['email'] = message.text
 
   await Buddy.next()
-  await message.answer('Ваше имя:', reply_markup=cancel_button())
+  await message.answer('Ваше имя:')
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
