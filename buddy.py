@@ -83,7 +83,6 @@ def cancel_button():
   return keyboard
 
 # Registration entry point
-@dp.message_handler(commands='new_buddy')
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def name_start(message: types.Message):
   await Buddy.email.set()
