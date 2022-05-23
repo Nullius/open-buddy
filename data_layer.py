@@ -62,7 +62,7 @@ def send_feedback(uid, feedback_status):
     cur = conn.cursor()
     cur.execute('''INSERT INTO feedback
       (uid, date, feedback_status)
-      VALUES (?, date(), ?))
+      VALUES (?, date(), ?)
       ''', (uid, feedback_status)
     )
     conn.commit()
