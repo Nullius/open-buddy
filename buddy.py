@@ -48,17 +48,17 @@ async def what_results(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
 async def good_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_GOOD)
-  await message.answer(replies.good_feedback)
+  await message.answer(replies.good_feedback, reply_markup=types.ReplyKeyboardRemove)
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла не очень")
 async def bad_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_BAD)
-  await message.answer(replies.bad_feedback)
+  await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove)
 
 @dp.message_handler(lambda message: message.text == "Бадди не отвечает :((")
 async def no_reply_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_NO_REPLY)
-  await message.answer(replies.bad_feedback)
+  await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove)
 
 class Buddy(StatesGroup):
   email = State()
