@@ -56,9 +56,9 @@ def run_pairing():
     keyboard.add(*buttons)
 
     if (user_to_pair[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(to_pair, invite_message(user_buddy)), keyboard)
+      asyncio.run(send_message(to_pair, invite_message(user_buddy), keyboard))
     if (user_buddy[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(buddy, invite_message(user_to_pair)), keyboard)
+      asyncio.run(send_message(buddy, invite_message(user_to_pair), keyboard))
 
 '''
 @periodic(2)
