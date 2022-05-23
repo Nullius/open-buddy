@@ -45,6 +45,18 @@ async def what_results(message: types.Message):
   await message.answer(replies.what_results)
   await message.answer_video(open('static/sample.mkv', 'rb'))
 
+@dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
+async def good_feedback(message: types.Message):
+  await message.answer(replies.good_feedback)
+
+@dp.message_handler(lambda message: message.text == "Встреча прошла не очень")
+async def bad_feedback(message: types.Message):
+  await message.answer(replies.bad_feedback)
+
+@dp.message_handler(lambda message: message.text == "Бадди не отвечает :((")
+async def no_reply_feedback(message: types.Message):
+  await message.answer(replies.bad_feedback)
+
 class Buddy(StatesGroup):
   email = State()
   name = State()
