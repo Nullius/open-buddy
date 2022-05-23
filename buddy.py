@@ -119,7 +119,6 @@ async def process_phone(message: types.Message, state=FSMContext):
     await bot.send_message(
       message.chat.id,
       replies.finish,
-      reply_markup=keyboard
     )
     await state.finish()
 
