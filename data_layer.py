@@ -12,7 +12,6 @@ def create_connection():
   return conn
 
 def create_users():
-  print('No users, creating table...')
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
@@ -32,15 +31,12 @@ def create_users():
     ''')
     conn.commit()
   except Error as e:
-    print('Error')
     print(e)
   finally:
-    print('Success')
     cur.close()
     conn.close()
 
 def create_feedback():
-  print('No feedback, creating table...')
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
@@ -52,15 +48,12 @@ def create_feedback():
     )
     ''')
   except Error as e:
-    print('Error')
     print(e)
   finally:
-    print('Success')
     cur.close()
     conn.close()
 
 def create_buddies():
-  print('No buddies, creating table...')
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
@@ -71,10 +64,8 @@ def create_buddies():
     ''')
     conn.commit()
   except Error as e:
-    print('Error')
     print(e)
   finally:
-    print('Success')
     cur.close()
     conn.close()
 
