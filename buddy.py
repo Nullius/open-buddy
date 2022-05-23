@@ -9,7 +9,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from dotenv import load_dotenv
 
-from data_layer import new_user, create_buddies, create_users, create_feedback
+import data_layer
 import replies
 
 load_dotenv()
@@ -47,14 +47,17 @@ async def what_results(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
 async def good_feedback(message: types.Message):
+  data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_GOOD)
   await message.answer(replies.good_feedback)
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла не очень")
 async def bad_feedback(message: types.Message):
+  data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_BAD)
   await message.answer(replies.bad_feedback)
 
 @dp.message_handler(lambda message: message.text == "Бадди не отвечает :((")
 async def no_reply_feedback(message: types.Message):
+  data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_NO_REPLY)
   await message.answer(replies.bad_feedback)
 
 class Buddy(StatesGroup):
@@ -126,7 +129,7 @@ async def process_phone(message: types.Message, state=FSMContext):
     data['uid'] = message.chat.id
     data['active'] = True
     data['username'] = message.chat.username
-    new_user(dict(data))
+    data_layer.new_user(dict(data))
 
     await bot.send_message(
       message.chat.id,
@@ -142,7 +145,7 @@ async def send_message(uid, message, keyboard=None):
   )
 
 if __name__ == '__main__':
-    create_users()
-    create_buddies()
-    create_feedback()
+    data_layer.create_users()
+    data_layer.create_buddies()
+    data_layer.create_feedback()
     executor.start_polling(dp, skip_updates=True)

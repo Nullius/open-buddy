@@ -53,6 +53,25 @@ def create_feedback():
     cur.close()
     conn.close()
 
+FEEDBACK_GOOD = 1
+FEEDBACK_BAD = 2
+FEEDBACK_NO_REPLY = 3
+def send_feedback(uid, feedback_status):
+  try:
+    conn = sqlite3.connect(db_name)
+    cur = conn.cursor()
+    cur.execute('''INSERT INTO feedback
+      (uid, date, feedback_status)
+      VALUES (?, date(), ?))
+      ''', (uid, feedback_status)
+    )
+    conn.commit()
+  except Error as e:
+    print(e)
+  finally:
+    cur.close()
+    conn.close()
+
 def create_buddies():
   try:
     conn = sqlite3.connect(db_name)
