@@ -67,30 +67,27 @@ class Buddy(StatesGroup):
   position = State()
   phone = State()
 
-# Registration entry point
-@dp.message_handler(commands='new_buddy')
-@dp.message_handler(lambda message: message.text == 'Давай начнем!')
-async def name_start(message: types.Message):
-  await Buddy.email.set()
-  await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
-
-'''
 @dp.message_handler(state='*', commands='cancel')
 async def cancel_handler(message: types.Message, state: FSMContext):
   current_state = await state.get_state()
   if current_state is None:
     return
   
-  # await state.finish()
-  await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
-  await Buddy.previous()
+  await state.finish()
+  await message.answer('Регистрация отменена', reply_markup=types.ReplyKeyboardRemove())
 
 def cancel_button():
   keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
   buttons = ["\cancel",]
   keyboard.add(*buttons)
   return keyboard
-'''
+
+# Registration entry point
+@dp.message_handler(commands='new_buddy')
+@dp.message_handler(lambda message: message.text == 'Давай начнем!')
+async def name_start(message: types.Message):
+  await Buddy.email.set()
+  await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
