@@ -36,6 +36,23 @@ def create_users():
     cur.close()
     conn.close()
 
+def create_feedback():
+  try:
+    conn = sqlite3.connect(db_name)
+    cur = conn.cursor()
+    cur.execute('''CREATE TABLE if NOT EXISTS feedback (
+      id INTEGER PRIMARY KEY,
+      uid INTEGER NOT NULL,
+      date DATE NOT NULL,
+      feedback_status,
+    )
+    ''')
+  except Error as e:
+    print(e)
+  finally:
+    cur.close()
+    conn.close()
+
 def create_buddies():
   try:
     conn = sqlite3.connect(db_name)

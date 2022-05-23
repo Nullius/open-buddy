@@ -9,14 +9,13 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from dotenv import load_dotenv
 
-from data_layer import new_user, create_buddies, create_users
+from data_layer import new_user, create_buddies, create_users, create_feedback
 import replies
 
 load_dotenv()
 bot_token = os.getenv("BUDDY_TOKEN")
 if not bot_token:
     sys.exit("Error: no token")
-
 
 bot = Bot(token=bot_token)
 storage = MemoryStorage()
@@ -131,4 +130,5 @@ async def send_message(uid, message):
 if __name__ == '__main__':
     create_users()
     create_buddies()
+    create_feedback()
     executor.start_polling(dp, skip_updates=True)
