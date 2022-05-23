@@ -1,4 +1,5 @@
 import asyncio
+from aiogram import types
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
 
@@ -50,10 +51,14 @@ def run_pairing():
     user_to_pair = get_user_by_id(to_pair, users)
     user_buddy = get_user_by_id(buddy, users)
 
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    buttons = ["Встреча прошла круто!", "Встреча прошла не очень", "Бадди не отвечает :(("]
+    keyboard.add(*buttons)
+
     if (user_to_pair[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(to_pair, invite_message(user_buddy)))
+      asyncio.run(send_message(to_pair, invite_message(user_buddy)), keyboard)
     if (user_buddy[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(buddy, invite_message(user_to_pair)))
+      asyncio.run(send_message(buddy, invite_message(user_to_pair)), keyboard)
 
 '''
 @periodic(2)
