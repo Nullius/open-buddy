@@ -115,9 +115,14 @@ async def process_phone(message: types.Message, state=FSMContext):
     data['active'] = True
     data['username'] = message.chat.username
     new_user(dict(data))
+
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    buttons = ["Встреча прошла круто!", "Встреча прошла не очень", "Бадди не отвечает :(("]
+    keyboard.add(*buttons)
     await bot.send_message(
       message.chat.id,
-      replies.finish
+      replies.finish,
+      reply_markup=keyboard
     )
     await state.finish()
 
