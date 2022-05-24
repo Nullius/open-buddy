@@ -91,7 +91,7 @@ async def registration_start(message: types.Message):
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
-  pattern = re.compile('^.+@open\.ru$', 'i')
+  pattern = re.compile('^.+@open\.ru$', flags=re.I)
   if (not pattern.match(message.text)):
     await Buddy.email.set()
     await message.answer("Ваш рабочий e-mail:")
