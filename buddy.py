@@ -39,7 +39,8 @@ async def what_is_this(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == "Как это работает?")
 async def how_this_works(message: types.Message):
-  await message.answer(replies.how_this_works)
+  # await message.answer(replies.how_this_works)
+  await message.answer('https://www.youtube.com/watch?v=JGulAZnnTKA')
 
 @dp.message_handler(lambda message: message.text == "Какие результаты?")
 async def what_results(message: types.Message):
@@ -94,7 +95,7 @@ async def process_email(message: types.Message, state: FSMContext):
   pattern = re.compile('^.+@open\.ru$', flags=re.I)
   if (not pattern.match(message.text)):
     await Buddy.email.set()
-    await message.answer("Ваш рабочий e-mail:")
+    await message.answer("Бот предназначен только для сотрудников банка «Открытие». Пожалуйста введите ваш рабочий e-mail.")
   else:
     async with state.proxy() as data:
       data['email'] = message.text
