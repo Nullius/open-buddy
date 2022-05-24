@@ -5,6 +5,7 @@ import random
 
 from data_layer import get_users, write_pair
 from buddy import send_message
+import replies
 
 INVITE = 'Invite to meeting message'
 def invite_message(user):
@@ -36,6 +37,8 @@ def run_pairing():
 
   if (len(uids) % 2 == 1):
     lone = uids.pop()
+    if (user_to_pair[3] != 'OpenBuddyBot'):
+      asyncio.run(send_message(lone, replies.lone_user))
     # TODO write to DB (or maybe not)
 
   while len(uids) > 0:
