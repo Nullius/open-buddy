@@ -37,9 +37,10 @@ def run_pairing():
 
   if (len(uids) % 2 == 1):
     lone = uids.pop()
-    lone_user = get_user_by_id(lone)
-    if (lone_user[3] != 'OpenBuddyBot'):
+    try:
       asyncio.run(send_message(lone, replies.lone_user))
+    except:
+      print('lone user message can\'t be sent')
     # TODO write to DB (or maybe not)
 
   while len(uids) > 0:
