@@ -100,7 +100,7 @@ async def process_email(message: types.Message, state: FSMContext):
       data['email'] = message.text
 
     await Buddy.next()
-    await message.answer('Ваше имя:', reply_markup=cancel_button())
+    await message.answer('Ваше имя:')
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
@@ -136,6 +136,7 @@ async def process_phone(message: types.Message, state=FSMContext):
     await bot.send_message(
       message.chat.id,
       replies.finish,
+      reply_markup=types.ReplyKeyboardRemove
     )
     await state.finish()
 
