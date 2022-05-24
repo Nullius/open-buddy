@@ -68,7 +68,7 @@ class Buddy(StatesGroup):
   position = State()
   phone = State()
 
-@dp.message_handler(state='*', commands='cancel')
+@dp.message_handler(lambda message: message.txt == "Отменить регистрацию", state='*')
 async def cancel_handler(message: types.Message, state: FSMContext):
   current_state = await state.get_state()
   if current_state is None:
@@ -79,7 +79,7 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 
 def cancel_button():
   keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-  buttons = ["\cancel",]
+  buttons = ["Отменить регистрацию",]
   keyboard.add(*buttons)
   return keyboard
 
@@ -87,7 +87,7 @@ def cancel_button():
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def registration_start(message: types.Message):
   await Buddy.email.set()
-  await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
+  await message.answer("Ваш e-mail:", reply_markup=cancel_button())
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
@@ -100,7 +100,7 @@ async def process_email(message: types.Message, state: FSMContext):
       data['email'] = message.text
 
     await Buddy.next()
-    await message.answer('Ваше имя:')
+    await message.answer('Ваше имя:', reply_markup=cancel_button())
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
