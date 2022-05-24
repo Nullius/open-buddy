@@ -35,7 +35,7 @@ async def what_is_this(message: types.Message):
   # bot.send_photo(chat_id=message.chat.id, photo=open('static/what-is-this.png', 'rb'))
   await message.answer_photo(open('static/what-is-this.png', 'rb'))
   await message.answer("Послушай это :)")
-  await message.answer_audio(open('static/sample.mp3', 'rb'))
+  await message.answer_audio(open('static/what-it-is.mp3', 'rb'))
 
 @dp.message_handler(lambda message: message.text == "Как это работает?")
 async def how_this_works(message: types.Message):
@@ -44,7 +44,7 @@ async def how_this_works(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Какие результаты?")
 async def what_results(message: types.Message):
   await message.answer(replies.what_results)
-  await message.answer_video(open('static/sample.mkv', 'rb'))
+  await message.answer_video(open('static/open-buddy.mp4', 'rb'))
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
 async def good_feedback(message: types.Message):
