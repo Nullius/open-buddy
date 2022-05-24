@@ -68,7 +68,7 @@ class Buddy(StatesGroup):
   position = State()
   phone = State()
 
-@dp.message_handler(lambda message: message.txt == "Отменить регистрацию", state='*')
+@dp.message_handler(lambda message: message.text == "Отменить регистрацию", state='*')
 async def cancel_handler(message: types.Message, state: FSMContext):
   current_state = await state.get_state()
   if current_state is None:
