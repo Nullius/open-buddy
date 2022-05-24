@@ -39,13 +39,12 @@ async def what_is_this(message: types.Message):
 
 @dp.message_handler(lambda message: message.text == "Как это работает?")
 async def how_this_works(message: types.Message):
-  # await message.answer(replies.how_this_works)
-  await message.answer('https://www.youtube.com/watch?v=JGulAZnnTKA')
+  await message.answer(replies.how_this_works)
 
 @dp.message_handler(lambda message: message.text == "Какие результаты?")
 async def what_results(message: types.Message):
   await message.answer(replies.what_results)
-  await message.answer_video(open('static/open-buddy.mp4', 'rb'))
+  await message.answer_video(open('static/sample.MOV', 'rb'))
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
 async def good_feedback(message: types.Message):
