@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+import re
 
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
@@ -84,17 +85,22 @@ def cancel_button():
 
 # Registration entry point
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
-async def name_start(message: types.Message):
+async def registration_start(message: types.Message):
   await Buddy.email.set()
   await message.answer("Ваш e-mail:", reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
-  async with state.proxy() as data:
-    data['email'] = message.text
+  pattern = re.compile('^.+@open\.ru$', 'i')
+  if (not pattern.match(message.text)):
+    await Buddy.email.set()
+    await message.answer("Ваш рабочий e-mail:")
+  else:
+    async with state.proxy() as data:
+      data['email'] = message.text
 
-  await Buddy.next()
-  await message.answer('Ваше имя:')
+    await Buddy.next()
+    await message.answer('Ваше имя:')
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
