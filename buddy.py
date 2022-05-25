@@ -88,7 +88,7 @@ def cancel_button():
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def registration_start(message: types.Message):
   await Buddy.email.set()
-  await message.answer("Ваш e-mail:", reply_markup=cancel_button())
+  await message.answer("Ваш корпоративный e-mail:", reply_markup=cancel_button())
 
 @dp.message_handler(state=Buddy.email)
 async def process_email(message: types.Message, state: FSMContext):
