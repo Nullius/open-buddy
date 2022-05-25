@@ -9,7 +9,7 @@ data = [
     'phone': '111-111-1',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '0@open.ru',
   },
   {
     'uid': 1,
@@ -19,7 +19,7 @@ data = [
     'phone': '111-111-2',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '1@open.ru',
   },
   {
     'uid': 2,
@@ -29,7 +29,7 @@ data = [
     'phone': '111-111-3',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '2@open.ru',
   },
   {
     'uid': 3,
@@ -39,7 +39,7 @@ data = [
     'phone': '111-111-4',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '3@open.ru',
   },
   {
     'uid': 4,
@@ -49,7 +49,7 @@ data = [
     'phone': '111-111-5',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '4@open.ru',
   },
   {
     'uid': 5,
@@ -59,7 +59,7 @@ data = [
     'phone': '111-111-6',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '5@open.ru',
   },
   {
     'uid': 6,
@@ -69,7 +69,7 @@ data = [
     'phone': '111-111-7',
     'username': 'OpenBuddyBot',
     'active': 1,
-    'email': '',
+    'email': '6@open.ru',
   },
 ]
 

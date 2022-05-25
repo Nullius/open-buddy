@@ -1,4 +1,5 @@
 import asyncio
+from turtle import position
 from aiogram import types
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
@@ -9,14 +10,22 @@ import replies
 
 INVITE = 'Invite to meeting message'
 def invite_message(user):
-  uid, name, surname, username, phone, email = user
-  return '''Твой бадди на неделю
-    {} {}
-    {}
-    @{} {}.
-    Ему тоже пришло уведомление с твоими контактами'''.format(
-    name, surname, email, username, phone
-  )
+  uid, name, surname, username, phone, email, position = user
+  return '''Еху! ❤️🔆🎉
+
+✨ Твой бадди на две недели {} {}, {}
+
+✨ Его контакты @{}, {}, {}
+
+✨ Ему тоже пришло уведомление с твоими контактами.
+
+✨ Темы для первого разговора и обязательные ритуалы поддержки [здесь](https://docs.google.com/document/d/13dZHH0m6F6VN42U2ohsSNrsFJl8REzrGGQTGL3iPxWY/edit?usp=sharing) :)
+
+
+Не жди, напиши своему бадди первым ❤️'''.format(
+  name, surname, position,
+  username, phone, email
+)
 
 def get_user_by_id (uid, users):
   user = list(filter(lambda user: user[0] == uid, users))

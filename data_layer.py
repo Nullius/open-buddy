@@ -109,7 +109,7 @@ def get_users():
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
-    cur.execute('''SELECT uid, name, surname, username, phone, email
+    cur.execute('''SELECT uid, name, surname, username, phone, email, position
       FROM users
       WHERE active = 1
       ORDER BY
