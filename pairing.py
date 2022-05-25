@@ -10,7 +10,7 @@ import replies
 INVITE = 'Invite to meeting message'
 def invite_message(user):
   uid, name, surname, username, phone, email = user
-  return 'Твой бадди на две недели {} {} @{} {}. Ему тоже пришло уведомление с твоими контактами'.format(
+  return 'Твой бадди на неделю {} {} @{} {}. Ему тоже пришло уведомление с твоими контактами'.format(
     name, surname, username, phone
   )
 
@@ -74,7 +74,7 @@ async def do_something(*args, **kwargs):
 
 if __name__ == '__main__':
   scheduler = AsyncIOScheduler()
-  scheduler.add_job(run_pairing, 'interval', minutes=1)
+  scheduler.add_job(run_pairing, 'interval', days=1)
   scheduler.start()
 
   try:
