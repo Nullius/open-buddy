@@ -44,7 +44,7 @@ async def how_this_works(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Какие результаты?")
 async def what_results(message: types.Message):
   await message.answer(replies.what_results)
-  await message.answer('https://youtu.be/2RjJ0vwtv1M')
+  await message.answer('https://www.youtube.com/watch?v=2RjJ0vwtv1M');
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
 async def good_feedback(message: types.Message):
@@ -84,6 +84,7 @@ def cancel_button():
   return keyboard
 
 # Registration entry point
+@dp.message_handler(commands='begin')
 @dp.message_handler(lambda message: message.text == 'Давай начнем!')
 async def registration_start(message: types.Message):
   await Buddy.email.set()
