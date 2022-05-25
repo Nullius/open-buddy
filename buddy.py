@@ -44,22 +44,22 @@ async def how_this_works(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Какие результаты?")
 async def what_results(message: types.Message):
   await message.answer(replies.what_results)
-  await message.answer_video(open('static/sample.MOV', 'rb'))
+  await message.answer('https://youtu.be/2RjJ0vwtv1M')
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла круто!")
 async def good_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_GOOD)
-  await message.answer(replies.good_feedback, reply_markup=types.ReplyKeyboardRemove)
+  await message.answer(replies.good_feedback, reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(lambda message: message.text == "Встреча прошла не очень")
 async def bad_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_BAD)
-  await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove)
+  await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove())
 
 @dp.message_handler(lambda message: message.text == "Бадди не отвечает :((")
 async def no_reply_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_NO_REPLY)
-  await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove)
+  await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove())
 
 class Buddy(StatesGroup):
   email = State()
