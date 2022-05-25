@@ -10,8 +10,12 @@ import replies
 INVITE = 'Invite to meeting message'
 def invite_message(user):
   uid, name, surname, username, phone, email = user
-  return 'Твой бадди на неделю {} {} @{} {}. Ему тоже пришло уведомление с твоими контактами'.format(
-    name, surname, username, phone
+  return '''Твой бадди на неделю
+    {} {}
+    {}
+    @{} {}.
+    Ему тоже пришло уведомление с твоими контактами'''.format(
+    name, surname, email, username, phone
   )
 
 def get_user_by_id (uid, users):
