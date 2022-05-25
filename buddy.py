@@ -146,7 +146,8 @@ async def send_message(uid, message, keyboard=None):
   await bot.send_message(
     uid,
     message,
-    reply_markup=keyboard 
+    reply_markup=keyboard,
+    parse_mode='Markdown'
   )
 
 if __name__ == '__main__':

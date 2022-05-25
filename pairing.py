@@ -1,5 +1,4 @@
 import asyncio
-from turtle import position
 from aiogram import types
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
