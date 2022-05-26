@@ -131,7 +131,7 @@ async def process_phone(message: types.Message, state=FSMContext):
     data['phone'] = message.text
     data['uid'] = message.chat.id
     data['active'] = True
-    data['username'] = message.chat.username
+    data['username'] = message.chat.username or ''
     data_layer.new_user(dict(data))
 
     await bot.send_message(
