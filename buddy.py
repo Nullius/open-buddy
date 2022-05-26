@@ -64,12 +64,12 @@ async def no_reply_feedback(message: types.Message):
 @dp.message_handler(commands="pause")
 async def cmd_start(message: types.Message):
   data_layer.set_active(message.chat.id, False)
-  message.answer('Понимаю, много работы. Как соскучишься – возвращайся')
+  await message.answer('Понимаю, много работы. Как соскучишься – возвращайся')
 
 @dp.message_handler(commands="return")
 async def cmd_start(message: types.Message):
   data_layer.set_active(message.chat.id, True)
-  message.answer('С возвращением!')
+  await message.answer('С возвращением!')
 
 class Buddy(StatesGroup):
   email = State()
