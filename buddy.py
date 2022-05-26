@@ -61,6 +61,16 @@ async def no_reply_feedback(message: types.Message):
   data_layer.send_feedback(message.chat.id, data_layer.FEEDBACK_NO_REPLY)
   await message.answer(replies.bad_feedback, reply_markup=types.ReplyKeyboardRemove())
 
+@dp.message_handler(commands="pause")
+async def cmd_start(message: types.Message):
+  data_layer.set_active(message.chat.id, False)
+  message.answer('Понимаю, много работы. Как соскучишься – возвращайся')
+
+@dp.message_handler(commands="return")
+async def cmd_start(message: types.Message):
+  data_layer.set_active(message.chat.id, True)
+  message.answer('С возвращением!')
+
 class Buddy(StatesGroup):
   email = State()
   name = State()

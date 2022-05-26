@@ -137,3 +137,16 @@ def write_pair(uid1, uid2):
   finally:
     cur.close()
     conn.close()
+
+def set_active(uid, isActive):
+  query ='UPDATE users SET active = ? WHERE uid = ?';
+  try:
+    conn = sqlite3.connect(db_name)
+    cur = conn.cursor()
+    cur.execute(query, (isActive, uid))
+    conn.commit()
+  except Error as e:
+    print(e)
+  finally:
+    cur.close()
+    conn.close()
