@@ -73,10 +73,16 @@ async def run_pairing():
     buttons = ["Встреча прошла круто!", "Встреча прошла не очень", "Бадди не отвечает :(("]
     keyboard.add(*buttons)
 
-    if (user_to_pair[3] != 'OpenBuddyBot'):
-      await send_message(to_pair, invite_message(user_buddy), keyboard)
-    if (user_buddy[3] != 'OpenBuddyBot'):
-      await send_message(buddy, invite_message(user_to_pair), keyboard)
+    try:
+      if (user_to_pair[3] != 'OpenBuddyBot'):
+        await send_message(to_pair, invite_message(user_buddy), keyboard)
+    except e:
+      print(e)
+    try:
+      if (user_buddy[3] != 'OpenBuddyBot'):
+        await send_message(buddy, invite_message(user_to_pair), keyboard)
+    except e:
+      print(e)
 
 '''
 @periodic(2)
