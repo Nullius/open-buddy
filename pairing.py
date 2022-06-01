@@ -1,5 +1,6 @@
 import asyncio
 from aiogram import types
+from aiogram.utils.markdown import escape_md
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
 
@@ -14,7 +15,7 @@ def invite_message(user):
 
 ✨ Твой бадди на две недели {} {}, {}
 
-✨ Его контакты \@{}, {}, {}
+✨ Его контакты {}, {}, {}
 
 ✨ Ему тоже пришло уведомление с твоими контактами.
 
@@ -23,7 +24,7 @@ def invite_message(user):
 
 Не жди, напиши своему бадди первым ❤️'''.format(
   name, surname, position,
-  username, phone, email
+  escape_md('@{}'.format(username)), phone, email
 )
 
 def get_user_by_id (uid, users):
@@ -50,7 +51,7 @@ async def run_pairing():
   if (len(uids) % 2 == 1):
     lone = uids.pop()
     try:
-      asyncio.run(send_message(lone, replies.lone_user))
+      send_message(lone, replies.lone_user)
     except:
       print('lone user message can\'t be sent')
     # TODO write to DB (or maybe not)
