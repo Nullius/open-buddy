@@ -14,7 +14,7 @@ def invite_message(user):
 
 ✨ Твой бадди на две недели {} {}, {}
 
-✨ Его контакты @{}, {}, {}
+✨ Его контакты \@{}, {}, {}
 
 ✨ Ему тоже пришло уведомление с твоими контактами.
 
@@ -42,7 +42,7 @@ def periodic(period):
 
   return scheduler
 
-def run_pairing():
+async def run_pairing():
   users = get_users()
   print(users)
   uids = [user[0] for user in users]
@@ -73,9 +73,9 @@ def run_pairing():
     keyboard.add(*buttons)
 
     if (user_to_pair[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(to_pair, invite_message(user_buddy), keyboard))
+      await send_message(to_pair, invite_message(user_buddy), keyboard)
     if (user_buddy[3] != 'OpenBuddyBot'):
-      asyncio.run(send_message(buddy, invite_message(user_to_pair), keyboard))
+      await send_message(buddy, invite_message(user_to_pair), keyboard)
 
 '''
 @periodic(2)
