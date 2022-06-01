@@ -51,7 +51,7 @@ async def run_pairing():
   if (len(uids) % 2 == 1):
     lone = uids.pop()
     try:
-      send_message(lone, replies.lone_user)
+      await send_message(lone, replies.lone_user)
     except:
       print('lone user message can\'t be sent')
     # TODO write to DB (or maybe not)
