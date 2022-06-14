@@ -1,3 +1,4 @@
+import sys
 import asyncio
 from aiogram import types
 from aiogram.utils.markdown import escape_md
@@ -46,6 +47,9 @@ def periodic(period):
 def generate_buddy(user_id, uids):
   old_buddies = get_buddies(user_id)
   new_buddies = [buddy for buddy in uids if buddy not in old_buddies]
+  print(old_buddies)
+  print(new_buddies)
+  sys.exit()
   if (len(new_buddies) > 0):
     return random.choice(new_buddies)
   else:
