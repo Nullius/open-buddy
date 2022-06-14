@@ -146,7 +146,7 @@ def write_pair(uid1, uid2):
     cur.execute(update_date_query, (uid1,))
     cur.execute(update_date_query, (uid2,))
     cur.execute(insert_buddy_query, (uid1, uid2))
-    cur.execute(insert_buddy_query, (uid1, uid2))
+    cur.execute(insert_buddy_query, (uid2, uid1))
     conn.commit()
   except Error as e:
     print(e)
