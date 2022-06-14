@@ -100,7 +100,7 @@ def get_buddies(uid):
   finally:
     cur.close()
     conn.close()
-  return result
+  return [uid[0] for uid in result]
 
 def new_user(data):
   print(data)
