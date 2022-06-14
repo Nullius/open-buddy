@@ -88,6 +88,19 @@ def create_buddies():
     cur.close()
     conn.close()
 
+def get_buddies(uid):
+  try: 
+    conn = sqlite3.connect(db_name)
+    cur = conn.cursor()
+    cur.execute('''SELECT DISTINCT uid2 FROM buddies WHERE uid1=?''', (uid,))
+    result = cur.fetchall()
+  except Error as e:
+    print(e)
+  finally:
+    cur.close()
+    conn.close()
+  return [uid for result[0] in result]
+
 def new_user(data):
   print(data)
   try:
@@ -126,11 +139,14 @@ def get_users():
 
 def write_pair(uid1, uid2):
   update_date_query = 'UPDATE users SET pair_date = date(), pair_count = pair_count + 1 WHERE uid = ?'
+  insert_buddy_query = 'INSERT INTO buddies (user_uid, buddy_uid) VALUES(?, ?)'
   try:
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
     cur.execute(update_date_query, (uid1,))
     cur.execute(update_date_query, (uid2,))
+    cur.execute(insert_buddy_query, (uid1, uid2))
+    cur.execute(insert_buddy_query, (uid1, uid2))
     conn.commit()
   except Error as e:
     print(e)

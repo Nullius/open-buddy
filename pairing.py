@@ -4,7 +4,7 @@ from aiogram.utils.markdown import escape_md
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
 
-from data_layer import get_users, write_pair
+from data_layer import get_users, get_buddies, write_pair
 from buddy import send_message
 import replies
 
@@ -43,6 +43,14 @@ def periodic(period):
 
   return scheduler
 
+def generate_buddy(user_id, uids):
+  old_buddies = get_buddies(user_id)
+  new_buddies = [buddy for buddy in uids if buddy not in old_buddies]
+  if (len(new_buddies) > 0):
+    return random.choice(new_buddies)
+  else:
+    return random.choice(uids)
+
 async def run_pairing():
   users = get_users()
   print(users)
@@ -59,7 +67,7 @@ async def run_pairing():
   while len(uids) > 0:
     print(uids)
     to_pair = uids.pop(0)
-    buddy = random.choice(uids)
+    buddy = generate_buddy(to_pair, uids)
     uids.remove(buddy)
     print(to_pair, buddy)
     print(get_user_by_id(to_pair, users), get_user_by_id(buddy, users))
