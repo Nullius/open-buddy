@@ -89,6 +89,7 @@ def create_buddies():
     conn.close()
 
 def get_buddies(uid):
+  result = []
   try: 
     conn = sqlite3.connect(db_name)
     cur = conn.cursor()
@@ -99,7 +100,7 @@ def get_buddies(uid):
   finally:
     cur.close()
     conn.close()
-  return [uid for result[0] in result]
+  return result
 
 def new_user(data):
   print(data)
