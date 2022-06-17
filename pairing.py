@@ -50,9 +50,6 @@ def generate_buddy(user_id, uids):
   if (len(new_buddies) > 0):
     return random.choice(new_buddies)
   else:
-    print(old_buddies)
-    print(new_buddies)
-    sys.exit()
     return random.choice(uids)
 
 async def run_pairing():
