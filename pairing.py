@@ -1,7 +1,6 @@
 import sys
 import asyncio
 from aiogram import types
-from aiogram.utils.markdown import escape_md
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import random
 
@@ -84,12 +83,12 @@ async def run_pairing():
 
     try:
       if (user_to_pair[3] != 'OpenBuddyBot'):
-        await escape_md(send_message(to_pair, invite_message(user_buddy), keyboard))
+        await send_message(to_pair, invite_message(user_buddy), keyboard)
     except e:
       print(e)
     try:
       if (user_buddy[3] != 'OpenBuddyBot'):
-        await escape_md(send_message(buddy, invite_message(user_to_pair), keyboard))
+        await send_message(buddy, invite_message(user_to_pair), keyboard)
     except e:
       print(e)
 
