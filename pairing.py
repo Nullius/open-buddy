@@ -14,7 +14,7 @@ def invite_message(user):
   uid, name, surname, username, phone, email, position = user
   return '''Еху! ❤️🔆🎉
 
-✨ Твой бадди на две недели {} {}, {}
+✨ Твой бадди на неделю {} {}, {}
 
 ✨ Его контакты {}, {}, {}
 
@@ -25,7 +25,7 @@ def invite_message(user):
 
 Не жди, напиши своему бадди первым ❤️'''.format(
   name, surname, position,
-  escape_md('@{}'.format(username)), phone, escape_md(email)
+  escape_md('@{}'.format(username)), phone, email)
 )
 
 def get_user_by_id (uid, users):
