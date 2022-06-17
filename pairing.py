@@ -2,6 +2,7 @@ import sys
 import asyncio
 from aiogram import types
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from aiogram.utils.markdown import escape_md
 import random
 
 from data_layer import get_users, get_buddies, write_pair

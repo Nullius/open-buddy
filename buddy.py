@@ -7,7 +7,6 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.utils.markdown import escape_md
 
 from dotenv import load_dotenv
 
@@ -158,7 +157,7 @@ async def process_phone(message: types.Message, state=FSMContext):
 async def send_message(uid, message, keyboard=None):
   await bot.send_message(
     uid,
-    escape_md(message),
+    message,
     reply_markup=keyboard,
     parse_mode='MarkdownV2'
   )
