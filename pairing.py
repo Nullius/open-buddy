@@ -25,7 +25,7 @@ def invite_message(user):
 
 Не жди, напиши своему бадди первым ❤️'''.format(
   name, surname, position,
-  escape_md('@{}'.format(username)), phone, escape_md(email)
+  '@{}'.format(username), phone, email
 )
 
 def get_user_by_id (uid, users):
@@ -84,12 +84,12 @@ async def run_pairing():
 
     try:
       if (user_to_pair[3] != 'OpenBuddyBot'):
-        await send_message(to_pair, invite_message(user_buddy), keyboard)
+        await escape_md(send_message(to_pair, invite_message(user_buddy), keyboard))
     except e:
       print(e)
     try:
       if (user_buddy[3] != 'OpenBuddyBot'):
-        await send_message(buddy, invite_message(user_to_pair), keyboard)
+        await escape_md(send_message(buddy, invite_message(user_to_pair), keyboard))
     except e:
       print(e)
 
