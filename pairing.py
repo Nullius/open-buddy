@@ -14,7 +14,7 @@ def invite_message(user):
   uid, name, surname, username, phone, email, position = user
 
   if username == '':
-    username = 'https://t.me/{}'.format(phone)
+    username = 'https://t.me/{}'.format(escape_md(phone))
   else:
     username = '@{}'.format(username)
 
@@ -24,7 +24,7 @@ def invite_message(user):
 
 ✨ Его контакты {}, {}, {}
 
-✨ Ему тоже пришло уведомление с твоими контактами.
+✨ Ему тоже пришло уведомление с твоими контактами\.
 
 ✨ Темы для первого разговора и обязательные ритуалы поддержки [здесь](https://docs.google.com/document/d/13dZHH0m6F6VN42U2ohsSNrsFJl8REzrGGQTGL3iPxWY/edit?usp=sharing) :)
 
