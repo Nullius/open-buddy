@@ -11,6 +11,10 @@ import replies
 INVITE = 'Invite to meeting message'
 def invite_message(user):
   uid, name, surname, username, phone, email, position = user
+
+  if username == '':
+    username = 'https://t.me/{}'.format(phone)
+
   return '''Еху! ❤️🔆🎉
 
 ✨ Твой бадди на неделю {} {}, {}
