@@ -137,7 +137,7 @@ async def process_position(message: types.Message, state=FSMContext):
   keyboard.add(types.KeyboardButton(text="Поделиться телефоном", request_contact=True))
   await message.answer("Ваш телефон:", reply_markup=keyboard)
 
-@dp.message_handler(state=Buddy.phone)
+@dp.message_handler(content_types=types.ContentType.CONTACT, state=Buddy.phone)
 async def process_phone(message: types.Message, state=FSMContext):
   async with state.proxy() as data:
     data['phone'] = message.text
