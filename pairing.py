@@ -18,7 +18,7 @@ def invite_message(user):
   else:
     username = '@{}'.format(username)
 
-  return '''Еху! ❤️🔆🎉
+  return escape_md('''Еху! ❤️🔆🎉
 
 ✨ Твой бадди на неделю {} {}, {}
 
@@ -26,12 +26,12 @@ def invite_message(user):
 
 ✨ Ему тоже пришло уведомление с твоими контактами.
 
-✨ Темы для первого разговора и обязательные ритуалы поддержки [здесь](https://docs.google.com/document/d/13dZHH0m6F6VN42U2ohsSNrsFJl8REzrGGQTGL3iPxWY/edit?usp=sharing) :)
-
-
-Не жди, напиши своему бадди первым ❤️'''.format(
+✨ Темы для первого разговора и обязательные ритуалы поддержки''').format(
   name, surname, position,
   username, phone, email
+) + '[здесь](https://docs.google.com/document/d/13dZHH0m6F6VN42U2ohsSNrsFJl8REzrGGQTGL3iPxWY/edit?usp=sharing)' + escape_md(''' :)
+
+Не жди, напиши своему бадди первым ❤️'''
 )
 
 def get_user_by_id (uid, users):
