@@ -30,8 +30,8 @@ def invite_message(user):
 
 
 Не жди, напиши своему бадди первым ❤️'''.format(
-  name, surname, position,
-  username, escape_md(phone), escape_md(email)
+  escape_md(name), escape_md(surname), escape_md(position),
+  escape_md(username), escape_md(phone), escape_md(email)
 )
 
 def get_user_by_id (uid, users):
