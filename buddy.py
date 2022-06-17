@@ -133,6 +133,8 @@ async def process_surname(message: types.Message, state: FSMContext):
 async def process_position(message: types.Message, state=FSMContext):
   await Buddy.next()
   await state.update_data(position=message.text)
+  keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+  keyboard.add(types.KeyboardButton(text="Поделиться телефоном", request_contact==True))
   await message.answer("Ваш телефон:")
 
 @dp.message_handler(state=Buddy.phone)
