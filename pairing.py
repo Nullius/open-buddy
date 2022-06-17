@@ -14,6 +14,8 @@ def invite_message(user):
 
   if username == '':
     username = 'https://t.me/{}'.format(phone)
+  else:
+    username = '@{}'.format(username)
 
   return '''Еху! ❤️🔆🎉
 
@@ -28,7 +30,7 @@ def invite_message(user):
 
 Не жди, напиши своему бадди первым ❤️'''.format(
   name, surname, position,
-  '@{}'.format(username), phone, email
+  username, phone, email
 )
 
 def get_user_by_id (uid, users):
