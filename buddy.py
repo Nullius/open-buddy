@@ -140,7 +140,7 @@ async def process_position(message: types.Message, state=FSMContext):
 @dp.message_handler(content_types=types.ContentType.CONTACT, state=Buddy.phone)
 async def process_phone(message: types.Message, state=FSMContext):
   async with state.proxy() as data:
-    data['phone'] = message.text
+    data['phone'] = message.contact.phone_number
     data['uid'] = message.chat.id
     data['active'] = True
     data['username'] = message.chat.username or ''
