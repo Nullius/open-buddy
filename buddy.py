@@ -159,7 +159,7 @@ async def send_message(uid, message, keyboard=None):
     uid,
     message,
     reply_markup=keyboard,
-    parse_mode='Markdown'
+    parse_mode='MarkdownV2'
   )
 
 if __name__ == '__main__':
