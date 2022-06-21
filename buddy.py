@@ -34,7 +34,7 @@ async def cmd_start(message: types.Message):
 async def what_is_this(message: types.Message):
   # bot.send_photo(chat_id=message.chat.id, photo=open('static/what-is-this.png', 'rb'))
   await message.answer_photo(open('static/what-is-this.png', 'rb'))
-  await message.answer("Послушай это :)")
+  await message.answer("Послушайте это :)")
   await message.answer_audio(open('static/what-it-is.mp3', 'rb'))
 
 @dp.message_handler(lambda message: message.text == "Как это работает?")
@@ -111,7 +111,7 @@ async def process_email(message: types.Message, state: FSMContext):
       data['email'] = message.text
 
     await Buddy.next()
-    await message.answer('Ваше имя:')
+    await message.answer('Ваше имя (только имя):')
 
 @dp.message_handler(state=Buddy.name)
 async def process_name(message: types.Message, state: FSMContext):
@@ -135,7 +135,7 @@ async def process_position(message: types.Message, state=FSMContext):
   await state.update_data(position=message.text)
   keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
   keyboard.add(types.KeyboardButton(text="Поделиться телефоном", request_contact=True))
-  await message.answer("Ваш телефон:", reply_markup=keyboard)
+  await message.answer("А теперь кликните на кнопку «Поделиться телефоном»:", reply_markup=keyboard)
 
 @dp.message_handler(content_types=types.ContentType.CONTACT, state=Buddy.phone)
 async def process_phone(message: types.Message, state=FSMContext):
@@ -152,6 +152,7 @@ async def process_phone(message: types.Message, state=FSMContext):
       reply_markup=types.ReplyKeyboardRemove(),
       parse_mode='Markdown'
     )
+    await message.answer(replies.finish_second)
     await state.finish()
 
 async def send_message(uid, message, keyboard=None):
