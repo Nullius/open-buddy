@@ -91,13 +91,16 @@ async def run_pairing():
     try:
       if (user_to_pair[3] != 'OpenBuddyBot'):
         await send_message(to_pair, invite_message(user_buddy), keyboard)
-    except e:
-      print(e)
+    except Exception as e:
+        uids.append(buddy)
+        print(e)
+
     try:
       if (user_buddy[3] != 'OpenBuddyBot'):
         await send_message(buddy, invite_message(user_to_pair), keyboard)
-    except e:
-      print(e)
+    except Exception as e:
+        uids.append(to_pair)
+        print(e)
 
 '''
 @periodic(2)
